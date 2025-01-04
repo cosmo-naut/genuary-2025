@@ -1,0 +1,27 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Day 4/Day4.cs" type="Script" id=1]
+[ext_resource path="res://Day 4/Day4.gdshader" type="Shader" id=2]
+
+[sub_resource type="OpenSimplexNoise" id=3]
+
+[sub_resource type="NoiseTexture" id=4]
+noise = SubResource( 3 )
+
+[sub_resource type="OpenSimplexNoise" id=5]
+
+[sub_resource type="NoiseTexture" id=6]
+noise = SubResource( 5 )
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 2 )
+shader_param/dark = Color( 0.12549, 0.12549, 0.12549, 1 )
+shader_param/light = Color( 0.2, 0.207843, 0.2, 1 )
+shader_param/noiseX = SubResource( 4 )
+shader_param/noiseY = SubResource( 6 )
+
+[node name="Control" type="ColorRect"]
+material = SubResource( 2 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
