@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Day 7/Day7.cs" type="Script" id=1]
+[ext_resource path="res://Day 7/Texture.tres" type="Texture" id=2]
+[ext_resource path="res://Day 7/Day7.gdshader" type="Shader" id=3]
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 3 )
+
+[node name="Control" type="TextureRect"]
+material = SubResource( 2 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 2 )
+
+[node name="Viewport" type="Viewport" parent="."]
+size = Vector2( 512, 512 )
+
+[node name="Control" type="Control" parent="Viewport"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 1 )
