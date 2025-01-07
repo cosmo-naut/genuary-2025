@@ -1,0 +1,40 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Day 8/Day8.cs" type="Script" id=1]
+[ext_resource path="res://test_circle.png" type="Texture" id=2]
+[ext_resource path="res://Day 8/Day8.tres" type="Shader" id=3]
+[ext_resource path="res://Day 8/Day8_2.tres" type="Shader" id=4]
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 3 )
+
+[sub_resource type="ViewportTexture" id=1]
+viewport_path = NodePath("Viewport")
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = ExtResource( 4 )
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Viewport" type="Viewport" parent="."]
+size = Vector2( 512, 512 )
+render_target_update_mode = 1
+
+[node name="Control" type="Control" parent="Viewport"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 1 )
+Texture = ExtResource( 2 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource( 2 )
+margin_right = 40.0
+margin_bottom = 40.0
+texture = SubResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource( 3 )
+anchor_right = 1.0
+anchor_bottom = 1.0

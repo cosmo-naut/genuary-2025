@@ -1,0 +1,19 @@
+[gd_resource type="Shader" format=2]
+
+[resource]
+code = "shader_type canvas_item;
+
+void fragment()
+{
+	float PI = 3.14159;
+	float TAU = PI * 2.0;
+	vec2 uv = UV;
+	for (int i = 0; i < 5; i++)
+	{
+		uv.y += sin(uv.x * float(i) * PI + TIME) * 0.05;
+	}
+	uv.y = mod(uv.y, 1.0);
+	uv.x += TIME * 0.05;
+	uv.x = mod(uv.x, 1.0);
+	COLOR = texture(TEXTURE, uv);
+}"
