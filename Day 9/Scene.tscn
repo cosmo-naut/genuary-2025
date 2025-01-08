@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Day 9/Day9.cs" type="Script" id=1]
+[ext_resource path="res://Day 9/Day9.gdshader" type="Shader" id=2]
+
+[sub_resource type="OpenSimplexNoise" id=3]
+period = 175.0
+persistence = 1.0
+lacunarity = 1.42
+
+[sub_resource type="NoiseTexture" id=4]
+seamless = true
+noise = SubResource( 3 )
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 2 )
+shader_param/line = Color( 0.996078, 0.980392, 0.878431, 1 )
+shader_param/background = Color( 0.156863, 0.211765, 0.0941176, 1 )
+shader_param/dots = Color( 0.223529, 0.266667, 0.133333, 1 )
+shader_param/fill_1 = Color( 0.376471, 0.423529, 0.219608, 1 )
+shader_param/fill_2 = Color( 0.866667, 0.631373, 0.368627, 1 )
+shader_param/fill_3 = Color( 0.737255, 0.423529, 0.145098, 1 )
+shader_param/noise = SubResource( 4 )
+
+[node name="Control" type="ColorRect"]
+material = SubResource( 2 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
