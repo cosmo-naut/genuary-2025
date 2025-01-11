@@ -1,0 +1,38 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Day 11/gum_tree.tres" type="Shader" id=1]
+[ext_resource path="res://Day 11/tree.png" type="Texture" id=2]
+[ext_resource path="res://Day 11/shadow.png" type="Texture" id=3]
+[ext_resource path="res://Day 11/leaves.png" type="Texture" id=4]
+
+[sub_resource type="Gradient" id=1]
+colors = PoolColorArray( 0.223529, 0.482353, 0.960784, 1, 0.854902, 0.92549, 0.980392, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+width = 512
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = ExtResource( 1 )
+shader_param/bark_under = Color( 0.858824, 0.843137, 0.764706, 1 )
+shader_param/bark_over = Color( 0.678431, 0.701961, 0.752941, 1 )
+shader_param/shadow = ExtResource( 3 )
+shader_param/leaves = ExtResource( 4 )
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Background" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_rotation = 90.0
+rect_pivot_offset = Vector2( 256, 256 )
+texture = SubResource( 2 )
+expand = true
+
+[node name="Tree" type="TextureRect" parent="."]
+material = SubResource( 4 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 2 )

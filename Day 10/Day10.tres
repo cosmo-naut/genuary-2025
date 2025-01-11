@@ -1,0 +1,20 @@
+[gd_resource type="Shader" format=2]
+
+[resource]
+code = "shader_type canvas_item;
+
+void fragment()
+{
+	float TAU = 6.2831853;
+
+	float rad = TIME / TAU;
+	mat2 rotation = mat2(vec2(cos(rad), -sin(rad)), vec2(sin(rad), cos(rad)));
+	vec2 uv = UV;
+	vec2 center = vec2(cos(TIME / TAU), sin(TIME / TAU));
+	
+	uv = rotation * (uv - center) + center;
+	
+	COLOR.r = sin(uv.x * TAU * sin(TIME));
+	COLOR.g = cos(uv.y * TAU * cos(TIME));
+	COLOR.b = tan(uv.y * uv.x * TAU * tan(TIME));
+}"
