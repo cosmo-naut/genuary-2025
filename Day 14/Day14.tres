@@ -1,0 +1,25 @@
+[gd_resource type="Shader" format=2]
+
+[resource]
+code = "shader_type canvas_item;
+
+uniform vec4 black : hint_color;
+uniform vec4 white : hint_color;
+uniform sampler2D paisley : hint_white;
+
+void fragment()
+{
+	vec4 col = texture(TEXTURE, UV);
+	float avg = (col.r + col.g + col.b) / 3.0;
+	vec4 p1 = texture(paisley, mod(UV * 8.0 + vec2(0, TIME * 0.1), 1.0));
+	vec4 p2 = texture(paisley, mod(UV * 8.0 + vec2(0, TIME * -0.1), 1.0));
+	bvec4 draw = bvec4(avg > 0.5, avg > 0.5, avg > 0.5, true);
+	
+	bvec4 dark_bool = bvec4(p1.a > 0.5, p1.a > 0.5, p1.a > 0.5, true);
+	vec4 dark_col = mix(black, white, vec4(dark_bool));
+	
+	bvec4 light_bool = bvec4(p2.a > 0.5, p2.a > 0.5, p2.a > 0.5, true);
+	vec4 light_col = mix(white, black, vec4(light_bool));
+	
+	COLOR = mix(dark_col, light_col, vec4(draw));
+}"

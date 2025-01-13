@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Day 14/skulls002.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://Day 14/Rotate.cs" type="Script" id=2]
+[ext_resource path="res://Day 14/Day14.tres" type="Shader" id=3]
+[ext_resource path="res://Day 14/paisley.png" type="Texture" id=4]
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 3 )
+shader_param/black = Color( 0.0509804, 0.105882, 0.164706, 1 )
+shader_param/white = Color( 0.878431, 0.882353, 0.866667, 1 )
+shader_param/paisley = ExtResource( 4 )
+
+[sub_resource type="ViewportTexture" id=1]
+viewport_path = NodePath("Viewport")
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Viewport" type="Viewport" parent="."]
+size = Vector2( 512, 512 )
+own_world = true
+transparent_bg = true
+
+[node name="Spatial" type="Spatial" parent="Viewport"]
+
+[node name="Spatial" type="Spatial" parent="Viewport/Spatial"]
+script = ExtResource( 2 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Viewport/Spatial/Spatial"]
+transform = Transform( 0.980372, -0.197156, -0.000110616, -0.018542, -0.0927598, 0.995516, -0.196282, -0.975974, -0.0945948, -6.06956, -3.76992, -51.0936 )
+mesh = ExtResource( 1 )
+skeleton = NodePath("../../../..")
+
+[node name="Camera" type="Camera" parent="Viewport/Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 25.6556 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="Viewport/Spatial"]
+transform = Transform( 0.010751, 0, 0.999942, 0, 1, 0, -0.999942, 0, 0.010751, -58.4922, 0, 0 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource( 2 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = SubResource( 1 )
+flip_v = true
