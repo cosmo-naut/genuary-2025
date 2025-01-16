@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Day 17/Day17.gdshader" type="Shader" id=1]
+[ext_resource path="res://Day 17/Day17.cs" type="Script" id=2]
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = ExtResource( 1 )
+
+[sub_resource type="ViewportTexture" id=3]
+viewport_path = NodePath("Viewport")
+
+[node name="Control" type="ColorRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Viewport" type="Viewport" parent="."]
+size = Vector2( 512, 512 )
+
+[node name="Control" type="Control" parent="Viewport"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 2 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource( 4 )
+margin_right = 40.0
+margin_bottom = 40.0
+texture = SubResource( 3 )
